@@ -1,0 +1,46 @@
+// Canvas Set Up
+let cnv = document.getElementById("my-canvas");
+let ctx = cnv.getContext("2d");
+cnv.height = 400;
+cnv.width = 600;
+let playerX = 300;
+let playerY = 200;
+let directionX = 0;
+let directionY = 0;
+let playerWidth = 50;
+
+// Animation
+function draw() {
+  // Clear Frame
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, cnv.width, cnv.width);
+  // Move Player
+  playerX += directionX;
+  playerY += directionY;
+  // Draw Player
+  ctx.fillStyle = "red";
+  ctx.fillRect(playerX, playerY, playerWidth, playerWidth);
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Key Handlers
+document.addEventListener("keydown", (event) => {
+  if (event.code === "ArrowUp") {
+    directionY = -3;
+  } else if (event.code === "ArrowDown") {
+    directionY = 3;
+  } else if (event.code === "ArrowLeft") {
+    directionX = -3;
+  } else if (event.code === "ArrowRight") {
+    directionX = 3;
+  }
+});
+document.addEventListener("keyup", (event) => {
+  if (event.code === "ArrowUp" || event.code === "ArrowDown") {
+    directionY = 0;
+  } else if (event.code === "ArrowLeft" || event.code === "ArrowRight") {
+    directionX = 0;
+  }
+});
