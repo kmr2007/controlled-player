@@ -16,9 +16,22 @@ function draw() {
   // Clear Frame
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, cnv.width, cnv.width);
+  // Confine Player
+  if (
+    playerY + directionY < 0 ||
+    playerY + directionY + playerHeight > cnv.height
+  ) {
+    directionY = 0;
+  } else if (
+    playerX + directionX < 0 ||
+    playerX + directionX + playerWidth > cnv.width
+  ) {
+    directionX = 0;
+  }
   // Move Player
   playerX += directionX;
   playerY += directionY;
+
   // Draw Player
   ctx.drawImage(playerImg, playerX, playerY, playerWidth, playerHeight);
 
@@ -38,6 +51,7 @@ document.addEventListener("keydown", (event) => {
     directionX = 3;
   }
 });
+
 document.addEventListener("keyup", (event) => {
   if (event.code === "ArrowUp" || event.code === "ArrowDown") {
     directionY = 0;
