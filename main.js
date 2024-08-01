@@ -5,9 +5,11 @@ cnv.height = 400;
 cnv.width = 600;
 let playerX = 300;
 let playerY = 200;
+let playerImg = document.getElementById("player-img");
 let directionX = 0;
 let directionY = 0;
 let playerWidth = 50;
+let playerHeight = 70;
 
 // Animation
 function draw() {
@@ -18,8 +20,7 @@ function draw() {
   playerX += directionX;
   playerY += directionY;
   // Draw Player
-  ctx.fillStyle = "red";
-  ctx.fillRect(playerX, playerY, playerWidth, playerWidth);
+  ctx.drawImage(playerImg, playerX, playerY, playerWidth, playerHeight);
 
   requestAnimationFrame(draw);
 }
